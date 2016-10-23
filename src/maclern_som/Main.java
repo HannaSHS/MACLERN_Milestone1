@@ -2,6 +2,9 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ * 
+ * Codes after initialize SOM input came from:
+ * http://www.programcreek.com/java-api-examples/index.php?source_dir=encog-java-examples-master/src/main/java/org/encog/examples/neural/som/SimpleSOM.java
  */
 package maclern_som;
 
@@ -9,9 +12,7 @@ import java.util.ArrayList;
 
 import org.encog.Encog;
 import org.encog.mathutil.matrices.Matrix;
-import org.encog.ml.data.MLData;
 import org.encog.ml.data.MLDataSet;
-import org.encog.ml.data.basic.BasicMLData;
 import org.encog.ml.data.basic.BasicMLDataSet;
 import org.encog.neural.som.SOM;
 import org.encog.neural.som.training.basic.BasicTrainSOM;
@@ -26,9 +27,6 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static double SOM_INPUT1[][] = {
-        {-1.0, -1.0, 1.0, 1.0},
-        {1.0, 1.0, -1.0, -1.0}};
 
     public static void main(String[] args) {
 //        SOM som = new SOM();
@@ -136,11 +134,6 @@ public class Main {
         for (iteration = 0; iteration < 10000; iteration++) {
             train.iteration();
         }
-
-//        MLData data1 = new BasicMLData(SOM_INPUT1[0]);
-//        MLData data2 = new BasicMLData(SOM_INPUT1[1]);
-//        System.out.println("Pattern 1 winner: " + network.classify(data1));
-//        System.out.println("Pattern 2 winner: " + network.classify(data2));
 
         Matrix m = network.getWeights();
         for (int i = 0; i < m.getRows(); i++) {
