@@ -135,6 +135,7 @@ public class Main {
             train.iteration();
         }
 
+        //get weight of the network
         Matrix m = network.getWeights();
         for (int i = 0; i < m.getRows(); i++) {
             System.out.print("[");
