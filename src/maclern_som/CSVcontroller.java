@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -111,6 +110,9 @@ public class CSVcontroller {
                             break;
                         case 22:
                             example.setQ28(Double.parseDouble(fxRatesAsString[i]));
+                            break;
+                        case 23:
+                            example.setInstr(Double.parseDouble(fxRatesAsString[i]));
                             break;
                     }
                 }

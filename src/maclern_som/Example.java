@@ -12,7 +12,7 @@ package maclern_som;
 public class Example {
     private double attendance, difficulty, Q2, Q3, Q4, Q5, 
             Q6, Q8, Q9, Q11, Q13, Q14, Q15, Q16, Q17,
-            Q18, Q20, Q21, Q22, Q24, Q25, Q27, Q28;
+            Q18, Q20, Q21, Q22, Q24, Q25, Q27, Q28, instr;
 
     /**
      * @return the attendance
@@ -335,6 +335,18 @@ public class Example {
     public void setQ28(double Q28) {
         this.Q28 = Q28;
     }
-    
 
+    /**
+     * @return the instr
+     */
+    public double getInstr() {
+        return instr;
+    }
+
+    /**
+     * @param instr the instr to set
+     */
+    public void setInstr(double instr) {
+        this.instr = instr;
+    }
 }

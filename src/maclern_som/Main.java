@@ -9,7 +9,7 @@
 package maclern_som;
 
 import java.util.ArrayList;
-
+import kmeans.Algorithm;
 import org.encog.Encog;
 import org.encog.mathutil.matrices.Matrix;
 import org.encog.ml.data.MLDataSet;
@@ -27,7 +27,6 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-
     public static void main(String[] args) {
 //        SOM som = new SOM();
 //        som.SOM();
@@ -131,20 +130,25 @@ public class Main {
 
         int iteration = 0;
 
-        for (iteration = 0; iteration < 10000; iteration++) {
+        for (iteration = 0; iteration < 10; iteration++) {
             train.iteration();
         }
 
         //get weight of the network
         Matrix m = network.getWeights();
+        double [][] weights = new double[m.getRows()][m.getRows()];
         for (int i = 0; i < m.getRows(); i++) {
             System.out.print("[");
             for (int j = 0; j < m.getCols(); j++) {
+                weights[i][j] = m.get(i, j);
                 System.out.print(m.get(i, j) + "\t");
             }
             System.out.print("]");
             System.out.println();
         }
+
+        Algorithm algo = new Algorithm(weights, 3);
+        algo.execute();
         Encog.getInstance().shutdown();
     }
 }
