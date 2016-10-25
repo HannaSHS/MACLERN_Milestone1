@@ -7,7 +7,6 @@ package kmeans;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.encog.mathutil.matrices.Matrix;
 
 /**
  *

@@ -29,9 +29,9 @@ public class Main {
      */
     public static void main(String[] args) {
 //        SOM som = new SOM();
-//        som.SOM();
+//        som.run();         
 
-        //Read CSV file
+//        Read CSV file
         CSVcontroller cc = new CSVcontroller();
         cc.readCSV("E:\\10th_Term\\MACLERN\\MP1\\MACLERN_Milestone1\\TSE Data Normalized and Cleaned.csv");
 
@@ -119,7 +119,7 @@ public class Main {
         MLDataSet training = new BasicMLDataSet(input, null);
 
         // Create the neural network. 
-        SOM network = new SOM(23, 23);
+        SOM network = new SOM(23, 10);
         network.reset();
 
         BasicTrainSOM train = new BasicTrainSOM(
@@ -130,7 +130,7 @@ public class Main {
 
         int iteration = 0;
 
-        for (iteration = 0; iteration < 10; iteration++) {
+        for (iteration = 0; iteration < 10000; iteration++) {
             train.iteration();
         }
 
@@ -139,7 +139,7 @@ public class Main {
         double [][] weights = new double[m.getRows()][m.getRows()];
         for (int i = 0; i < m.getRows(); i++) {
             System.out.print("[");
-            for (int j = 0; j < m.getCols(); j++) {
+            for (int j = 0; j < 10; j++) {
                 weights[i][j] = m.get(i, j);
                 System.out.print(m.get(i, j) + "\t");
             }
@@ -147,6 +147,10 @@ public class Main {
             System.out.println();
         }
 
+        //Write to csv
+        cc.writeCSV(weights);
+        
+        
         Algorithm algo = new Algorithm(weights, 3);
         algo.execute();
         Encog.getInstance().shutdown();

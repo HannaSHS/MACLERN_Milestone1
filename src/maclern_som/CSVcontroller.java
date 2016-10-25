@@ -8,6 +8,7 @@ package maclern_som;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -34,12 +35,12 @@ public class CSVcontroller {
             int line = 0;
             br = new BufferedReader(new FileReader(filePath));
             String header = br.readLine();
-            
+
             String lineText = "";
             while ((lineText = br.readLine()) != null) {
                 String[] fxRatesAsString = lineText.split(delimiter);
                 Example example = new Example();
-                
+
                 for (int i = 0; i < fxRatesAsString.length; i++) {
                     switch (i) {
                         case 0:
@@ -130,8 +131,51 @@ public class CSVcontroller {
             }
         }
     }
-    
+
     public ArrayList<Example> getSample() {
         return this.examples;
+    }
+
+    public void writeCSV(double [][] weights) {
+        //Delimiter used in CSV file
+        String COMMA_DELIMITER = ",";
+        String NEW_LINE_SEPARATOR = "\n";
+        
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter("Nodes.csv");
+            
+            fileWriter.append("Node, Weight");
+            //Add a new line separator after the header
+            fileWriter.append(NEW_LINE_SEPARATOR);
+
+            int i = 1;
+            //Write to the CSV file
+            for(int r = 0; r < weights.length; r++) {
+                for(int c = 0; c < weights.length; c++) {
+                    fileWriter.append("Node " + i + ":");
+                    fileWriter.append(COMMA_DELIMITER);
+                    fileWriter.append(String.valueOf(weights[r][c]));
+                    fileWriter.append(COMMA_DELIMITER);
+                    fileWriter.append(NEW_LINE_SEPARATOR);
+                    i++;
+                }
+            }
+            System.out.println("CSV file was created successfully !!!");
+        } catch (Exception e) {
+
+            System.out.println("Error in CsvFileWriter !!!");
+
+            e.printStackTrace();
+
+        } finally {
+            try {
+                fileWriter.flush();
+                fileWriter.close();
+            } catch (IOException e) {
+                System.out.println("Error while flushing/closing fileWriter !!!");
+                e.printStackTrace();
+            }
+        }
     }
 }
