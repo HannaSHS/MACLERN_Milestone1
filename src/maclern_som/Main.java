@@ -33,7 +33,7 @@ public class Main {
 
 //        Read CSV file
         CSVcontroller cc = new CSVcontroller();
-        cc.readCSV("E:\\10th_Term\\MACLERN\\MP1\\MACLERN_Milestone1\\TSE Data Normalized and Cleaned.csv");
+        cc.readCSV("TSE Data Normalized and Cleaned.csv");
 
         //initialize SOM input
         ArrayList<Example> samples = cc.getSample();
